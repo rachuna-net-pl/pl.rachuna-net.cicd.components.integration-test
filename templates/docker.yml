@@ -1,0 +1,35 @@
+---
+spec:
+  inputs:
+    docker_image:
+      default: ""
+      description: "The docker image to use for the job"
+    docker_test_script_path:
+      default: "container_test.sh"
+      description: "The path to the test script to run in the container"
+---
+variables:
+  CONTAINER_IMAGE_DOCKER: $[[ inputs.docker_image ]]
+  DOCKER_TEST_SCRIPT_PATH: $[[ inputs.docker_test_script_path ]]
+
+
+include:
+  - local: /source/logo.yml
+  - local: /source/input_variables_docker.yml
+
+
+.docker:integration-test:base:
+  image: $CONTAINER_IMAGE_DOCKER
+  before_script:
+    - git config --global --add safe.directory ${CI_PROJECT_DIR}
+    - !reference [.logo]
+    - !reference [.input-variables-docker]
+  script:
+    - bash $DOCKER_TEST_SCRIPT_PATH
+
+
+🧪 test docker image:
+  stage: "integration-test"
+  extends: ['.docker:integration-test:base']
+  rules:
+    - when: never

@@ -1,0 +1,3 @@
+.vscode
+templates/trivy.yml
+source/trivy_init.yml
