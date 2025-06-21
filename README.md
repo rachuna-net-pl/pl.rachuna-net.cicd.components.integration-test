@@ -6,7 +6,7 @@ Komponent do automatycznego uruchamiania testów integracyjnych w procesach CI/C
 [[_TOC_]]
 
 ---
-## Terraform
+## Docker
 ::include{file=docs/docker.md}
 
 ::include{file=.gitlab/contributions.md}

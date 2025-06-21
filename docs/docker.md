@@ -16,15 +16,16 @@
 ### Przykład użycia
 ```yaml
 include:
-  - local: 'templates/docker.yml'
+  - component: $CI_SERVER_FQDN/pl.rachuna-net/cicd/components/integration-test/docker@$COMPONENT_VERSION_INTEGRATION_TEST
 
-test_my_image:
-  extends: ['🧪 test docker image']
+🧪 test docker image:
+  needs:
+    - job: 🕵 Set Version
+      artifacts: true
+    - job: 🌐 publish docker image
   variables:
-    CONTAINER_IMAGE_DOCKER: 'registry.gitlab.com/moj-projekt/moj-obraz:latest'
-    DOCKER_TEST_SCRIPT_PATH: 'test/integration.sh'
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "main"'
+    CONTAINER_IMAGE_DOCKER: $CI_REGISTRY_IMAGE:$RELEASE_CANDIDATE_VERSION
+  rules: !reference [.rule:integration-test:docker, rules]
 ```
 ---
 ### Co robi template?
