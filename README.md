@@ -1,5 +1,5 @@
 ::include{file=.gitlab/badges.md}
-# ![](https://gitlab.com/pl.rachuna-net/infrastructure/terraform/modules/gitlab-project/-/raw/main/images/gitlab.png){height=20px} integration-test
+# ![](https://gitlab.com/pl.rachuna-net/infrastructure/terraform/iac-gitlab/-/raw/main/images/project/gitlab.png){height=20px} integration-test
 
 Komponent do automatycznego uruchamiania testów integracyjnych w procesach CI/CD.
 
